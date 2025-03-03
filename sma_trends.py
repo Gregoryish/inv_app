@@ -136,7 +136,7 @@ def sma_calc(data, short=5, medium=30, long=90, ticker_name = None):
 
 
 def user_input_features():
-    ticker_name = st.sidebar.text_input("Ticker", "NEE")
+    ticker_name = st.sidebar.text_input("Ticker", "AAPL")
     period = st.sidebar.selectbox('Period', ('6mo','3mo','1y', '2y', '5y', '10y', 'max',))
     short_term = st.sidebar.slider('Short term', 5,10,7)
     mid_term = st.sidebar.slider('Medium term', 20,40,30)
