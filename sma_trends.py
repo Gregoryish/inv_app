@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-# import yfinance as yf
+import yfinance as yf
 import requests
 import apimoex
 
@@ -11,12 +11,12 @@ import streamlit as st
 
 dict_periods = {"1d": 1, "5d": 5, "1mo": 30, "3mo": 3 * 30, "6mo": 6 * 30, "1y": 365, "2y": 2 * 365, "5y": 5 * 365,
                     "10y": 10 * 365, "max": None}
-# def get_data_ticker_yfinance(ticker_name, period='1y'):
-#     ticker = yf.Ticker(ticker_name)
+def get_data_ticker_yfinance(ticker_name, period='1y'):
+    ticker = yf.Ticker(ticker_name)
 
-#     data = ticker.history(period=period, interval='1d')
+    data = ticker.history(period=period, interval='1d')
 
-#     return data
+    return data
 
 
 def get_data_ticker_moex(ticker_name, start=None, end=None):
@@ -49,8 +49,8 @@ def get_data_ticker(ticker_name, period):
         start_str = None
 
     data = get_data_ticker_moex(ticker_name, start=start_str, end=end_str).rename(columns={'CLOSE': 'Close'})
-    # if data.shape[0] == 0:
-    #     data = get_data_ticker_yfinance(ticker_name, period=period)
+    if data.shape[0] == 0:
+        data = get_data_ticker_yfinance(ticker_name, period=period)
 
     return data
 
